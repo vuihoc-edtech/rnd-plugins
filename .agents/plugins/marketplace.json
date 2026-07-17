@@ -1,7 +1,7 @@
 {
-  "name": "lms-mcp",
+  "name": "vuihoc-rnd",
   "interface": {
-    "displayName": "Built by VuiHoc"
+    "displayName": "Vuihoc R&D Agent Plugins"
   },
   "plugins": [
     {
@@ -9,6 +9,18 @@
       "source": {
         "source": "local",
         "path": "./plugins/lms-review"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "mark-flow",
+      "source": {
+        "source": "local",
+        "path": "./plugins/mark-flow"
       },
       "policy": {
         "installation": "AVAILABLE",

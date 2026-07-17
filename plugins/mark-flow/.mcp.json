@@ -1,0 +1,19 @@
+{
+  "markflow": {
+    "url": "https://markflow-api.vuihoc.vn/mcp",
+    "enabled_tools": [
+      "search_scripts",
+      "get_script",
+      "get_script_comments",
+      "search_daily_scripts",
+      "get_daily_script",
+      "get_daily_script_comments",
+      "list_classes",
+      "list_subjects",
+      "list_teams",
+      "list_target_audiences",
+      "get_script_timeline",
+      "get_daily_script_timeline"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "mark-flow",
+  "version": "0.1.0",
+  "description": "Read-only Codex access to MarkFlow Hub scripts, daily scripts, catalogs, comments, and review timelines through MCP.",
+  "author": {
+    "name": "Vuihoc R&D"
+  },
+  "repository": "https://github.com/vhrnd/plugins.git",
+  "keywords": [
+    "markflow",
+    "mcp",
+    "scripts",
+    "review",
+    "education"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Mark Flow",
+    "shortDescription": "Search and inspect MarkFlow content through MCP.",
+    "longDescription": "Connects Codex to the MarkFlow Hub read-only MCP server for searching scripts and daily scripts, opening details and comments, listing catalog data, and reading review timelines.",
+    "developerName": "Vuihoc R&D",
+    "category": "Productivity",
+    "capabilities": [
+      "Read"
+    ],
+    "defaultPrompt": [
+      "Search MarkFlow scripts about a topic.",
+      "Open a MarkFlow script with comments.",
+      "List MarkFlow teams, classes, and subjects."
+    ],
+    "brandColor": "#2F7D68",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/logo.svg"
+  }
+}

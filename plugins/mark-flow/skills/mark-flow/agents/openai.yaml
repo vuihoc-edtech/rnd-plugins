@@ -1,0 +1,15 @@
+interface:
+  display_name: "MarkFlow"
+  short_description: "Use MarkFlow Hub MCP tools."
+  default_prompt: "Use $mark-flow to search MarkFlow scripts and summarize the relevant records."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "markflow"
+      description: "Read-only MarkFlow Hub MCP server for scripts, daily scripts, catalogs, comments, and timelines."
+      transport: "streamable_http"
+      url: "https://markflow-api.vuihoc.vn/mcp"
+
+policy:
+  allow_implicit_invocation: true
