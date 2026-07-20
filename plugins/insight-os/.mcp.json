@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "insight-os": {
+      "type": "http",
+      "url": "https://insight-os-api.vuihoc.vn/mcp",
+      "oauth_resource": "https://insight-os-api.vuihoc.vn/mcp"
+    }
+  }
+}
