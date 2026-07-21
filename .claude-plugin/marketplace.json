@@ -1,0 +1,31 @@
+{
+  "name": "vuihoc-rnd",
+  "owner": {
+    "name": "Vuihoc R&D",
+    "url": "https://vuihoc.vn/"
+  },
+  "metadata": {
+    "description": "Marketplace plugin nội bộ của Team R&D Vuihoc: kết nối MCP + skill workflow dùng chung cho các AI agent (Claude Code và tương thích).",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "lms-review",
+      "source": "./plugins/lms-review",
+      "description": "Review dữ liệu LMS revise/practice qua MCP VUIHOC.",
+      "category": "Productivity"
+    },
+    {
+      "name": "mark-flow",
+      "source": "./plugins/mark-flow",
+      "description": "Đọc/tìm script, daily script, catalog, comment, timeline MarkFlow Hub.",
+      "category": "Productivity"
+    },
+    {
+      "name": "insight-os",
+      "source": "./plugins/insight-os",
+      "description": "Customer context, sales coaching và market intelligence có evidence, backed by read-only Insight OS MCP.",
+      "category": "Productivity"
+    }
+  ]
+}
