@@ -1,7 +1,7 @@
 {
   "name": "insight-os",
-  "version": "0.1.0",
-  "description": "Evidence-linked customer, sales coaching, and market intelligence workflows backed by the read-only Insight OS MCP catalog.",
+  "version": "0.2.0",
+  "description": "Evidence-linked customer context, sales coaching, market intelligence, and conversion research backed by the read-only Insight OS MCP catalog.",
   "author": {
     "name": "Vuihoc R&D",
     "url": "https://vuihoc.vn/"
@@ -14,13 +14,14 @@
     "customer-intelligence",
     "sales-coaching",
     "market-research",
+    "conversion-research",
     "mcp"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Insight OS",
     "shortDescription": "Turn customer-call evidence into scoped sales and market intelligence.",
-    "longDescription": "Connects Codex to the read-only Insight OS capability catalog and adds focused workflows for pre-call customer context, sales coaching, market comparison, and evidence-backed claim verification. Authorization, row scope, PII redaction, and cohort privacy remain enforced by Insight OS on every tool call.",
+    "longDescription": "Connects Codex to the read-only Insight OS capability catalog and adds focused workflows for pre-call customer context, sales coaching, market intelligence, outcome-cohort comparison, and evidence-backed claim verification. Authorization, row scope, PII redaction, and cohort privacy remain enforced by Insight OS on every tool call.",
     "developerName": "Vuihoc R&D",
     "category": "Productivity",
     "capabilities": [
@@ -30,8 +31,8 @@
     ],
     "defaultPrompt": [
       "Chuẩn bị context khách hàng và cuộc gọi gần nhất.",
-      "Phân tích team để chọn ưu tiên coaching tuần này.",
-      "So sánh insight thị trường giữa hai giai đoạn."
+      "Chọn ưu tiên coaching và call mẫu cho buổi 1:1.",
+      "So sánh khách chốt với chưa mua để tìm nhu cầu nổi bật."
     ],
     "brandColor": "#2563EB"
   },

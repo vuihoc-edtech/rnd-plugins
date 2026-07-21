@@ -1,47 +1,63 @@
 ---
 name: insight-os-market-intelligence
-description: Research and verify customer or market signals with the bundled Insight OS MCP server. Use whenever Marketing, Product, CS, or leadership asks about customer needs, objections, trends, segment or time-window comparisons, campaign/research briefs, market claims, prevalence, outcomes, or evidence behind an Insight OS finding.
+description: >-
+  Research customer and market signals with Insight OS MCP. Use whenever Marketing, Product,
+  CS, or leadership asks about needs, pains, segment portraits, trends, research briefs,
+  prevalence, or verification of a market claim, even without saying "MCP". Also use for
+  Vietnamese requests such as "chân dung segment", "phụ huynh lớp 9", "gần đây nổi gì",
+  "xu hướng", or "verify nhận định". Use conversion-research instead for outcome-cohort
+  comparisons such as won-vs-no_order or won-vs-lost.
 ---
 
-# Insight OS Market Intelligence
+# Insight OS — Market Intelligence
 
-Use the bundled `insight-os` MCP server to turn aggregate customer-call signals into evidence-linked findings. Begin at aggregate knowledge and disclose finer-grained evidence only when the authenticated principal is allowed to see it.
+Start with aggregate knowledge, then use redacted evidence to explain what customers mean.
+Lead with `customer_need` and `pain_point`. Treat `objection` as consultation-stage hesitation;
+sales handling belongs in coaching. Outcome-cohort messaging belongs in
+`insight-os-conversion-research`.
 
 ## Workflow
 
-1. Translate the question into an explicit, timezone-aware primary window, optional comparison window, insight types, and segment dimensions.
-2. Discover available data with `insight_os_list_facets` and get an initial briefing with `insight_os_get_overview`.
-   - Use only populated facets returned by the server.
-   - While the server follow-up for comparison-aware facets is pending, do not use the `signal_group` facet for trend claims.
-3. Resolve natural-language topics with `insight_os_search_insights`.
-   - Inspect several plausible results when semantic overlap is broad.
-   - Confirm the chosen canonical cluster with `insight_os_get_insight`; do not accept rank alone as proof.
-4. Measure with `insight_os_aggregate_insights`.
-   - Use no more than two `group_by` dimensions.
-   - For rising/persistent/declining comparisons, use `group_by=["signal_group"]` with the same primary/comparison window.
-   - Compare prevalence and affected customers only where cohort policy returns them.
-5. Verify with `insight_os_get_evidence_summary` after narrowing to the most relevant cluster or small set of clusters.
-   - Prefer redacted summaries for market-level work.
-   - Escalate to detailed evidence/calls only when the user needs it and the capabilities are visible to the principal.
-6. Produce the requested research, campaign, product, CS, or leadership brief. Every material claim must point to a returned metric or evidence item and include caveats.
+1. Resolve an explicit timezone-aware primary window and, for trend questions, a comparison
+   window. Reuse them through the workflow.
+2. Use `insight_os_list_facets` and `insight_os_get_overview` to learn which filters and source
+   coverage are actually available.
+3. For a natural-language topic, call `insight_os_search_insights`, inspect several plausible
+   candidates, then confirm the selected canonical cluster with `insight_os_get_insight`.
+   Search rank is retrieval, not proof; read label and description before interpreting it.
+4. Measure with `insight_os_aggregate_insights`, using no more than two `group_by` dimensions.
+   For trends, compare matching primary/comparison windows and read data health before using a
+   signal group.
+5. Verify two or three material themes with `insight_os_get_evidence_summary`. Prefer diverse,
+   redacted representative items rather than near-duplicate examples.
+6. Write the requested market, Product, CS, or leadership brief. Tie every material claim to a
+   returned metric or evidence item.
 
-Follow the live tool schema exactly. If the public schema exposes a single `params` object, place all business arguments inside it.
+Follow the public tool schema and pass business arguments at the top level.
 
-## Interpretation Rules
+## Interpretation
 
-- Treat `data_health`, `caveats`, `access`, window, and comparison semantics as part of the result, not metadata to omit.
-- `insufficient_cohort` means the system intentionally withholds the count and evidence. State that; never estimate it.
-- Search results are retrieval candidates. Verify label, description, cluster metrics, and representative evidence before making a claim.
-- The current source coverage may be call-consult only. Do not infer ad channel, content exposure, campaign causality, product usage, or other touchpoints unless returned data explicitly supports them.
-- Separate observed signals from proposed messages, hypotheses, or actions.
+- Treat `data_health`, `caveats`, `access`, window, and comparison semantics as part of the
+  result, not metadata to omit.
+- `insufficient_cohort` means counts and evidence are intentionally withheld. Never estimate
+  them.
+- An empty comparison window or all-zero previous coverage means **dominant now**, not
+  **verified rising**.
+- Segment percentages use that segment's denominator. Insight buckets may overlap and do not
+  need to sum to 100%.
+- Current coverage may be call/consult only. Do not infer ad channel, content exposure,
+  campaign effect, product usage, or causality unless returned data explicitly supports it.
+- Separate observed signals from proposed messages, hypotheses, and actions.
 
-## Response Shape
+## Response
 
-- `Câu hỏi và phạm vi`: primary/comparison windows, filters, and segments.
-- `Kết luận chính`: concise evidence-backed answer.
-- `Số liệu`: prevalence, affected customers, trend, outcome, and comparison as available.
-- `Evidence`: representative redacted evidence or scoped references.
-- `Hàm ý`: clearly labeled interpretation and recommended next action.
-- `Caveats`: data health, source coverage, cohort suppression, redaction, and access constraints.
+- **Câu hỏi và phạm vi** — windows, filters, segment, and material coverage limits.
+- **Kết luận chính** — a 30-second portrait a decision-maker can quote.
+- **Họ muốn gì** — each theme: meaning, prevalence/base, and diverse redacted expressions.
+- **Họ lo hoặc khó gì** — pain first; objections short and secondary where relevant.
+- **Xu hướng** — only when comparison coverage supports one.
+- **Hàm ý** — clearly labeled interpretation or recommendation.
+- **Giới hạn dữ liệu** — health, source coverage, suppression, redaction, and access.
 
-When the user asks to verify a claim, end with `Supported`, `Partially supported`, `Not supported`, or `Insufficient data`, followed by the decisive evidence.
+When verifying a claim, finish with **Supported**, **Partially supported**, **Not supported**, or
+**Insufficient data**, followed by the decisive evidence.

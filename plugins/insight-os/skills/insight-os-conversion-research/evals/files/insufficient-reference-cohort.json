@@ -1,0 +1,89 @@
+{
+  "tool": "insight_os_compare_outcome_insights",
+  "response": {
+    "window": {
+      "from": "2026-07-01T00:00:00+07:00",
+      "to": "2026-07-15T23:59:59+07:00",
+      "compare_from": "2026-06-16T00:00:00+07:00",
+      "compare_to": "2026-06-30T23:59:59+07:00"
+    },
+    "target_outcomes": [
+      "won"
+    ],
+    "reference_outcomes": [
+      "no_order"
+    ],
+    "primary": {
+      "status": "insufficient_cohort",
+      "target": {
+        "status": "insufficient_cohort",
+        "observable_customers": null,
+        "customers_with_insights": null,
+        "insight_coverage": null
+      },
+      "reference": {
+        "status": "insufficient_cohort",
+        "observable_customers": null,
+        "customers_with_insights": null,
+        "insight_coverage": null
+      },
+      "overlap": {
+        "policy": "exclude_both",
+        "status": "none",
+        "excluded_customers": null
+      }
+    },
+    "comparison": {
+      "status": "insufficient_cohort",
+      "target": {
+        "status": "insufficient_cohort",
+        "observable_customers": null,
+        "customers_with_insights": null,
+        "insight_coverage": null
+      },
+      "reference": {
+        "status": "insufficient_cohort",
+        "observable_customers": null,
+        "customers_with_insights": null,
+        "insight_coverage": null
+      },
+      "overlap": {
+        "policy": "exclude_both",
+        "status": "none",
+        "excluded_customers": null
+      }
+    },
+    "items": [],
+    "breakdowns": [
+      {
+        "dimension": "insight_type",
+        "semantics": "non_mutually_exclusive_customers",
+        "items": []
+      },
+      {
+        "dimension": "handling_status",
+        "semantics": "non_mutually_exclusive_customers",
+        "items": []
+      },
+      {
+        "dimension": "customer_reaction",
+        "semantics": "non_mutually_exclusive_customers",
+        "items": []
+      }
+    ],
+    "has_more": false,
+    "next_cursor": null,
+    "data_health": "ready",
+    "caveats": [
+      {
+        "code": "association_not_causation",
+        "message": "Outcome differences are observed associations, not causal effects."
+      }
+    ],
+    "access": {
+      "granularity": "aggregate",
+      "redacted": true,
+      "min_cohort_size": 5
+    }
+  }
+}

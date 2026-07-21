@@ -1,0 +1,43 @@
+{
+  "skill_name": "insight-os-market-intelligence",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Làm chân dung phụ huynh lớp 9 trong 30 ngày gần nhất: họ muốn gì, khó gì và nói như thế nào. Objection chỉ để phần phụ.",
+      "expected_output": "A need-and-pain-led segment portrait with correct denominators, canonical cluster descriptions, diverse redacted evidence, and secondary objections.",
+      "files": [],
+      "expectations": [
+        "Uses populated segment facets and states coverage limits",
+        "Leads with customer needs and pain points",
+        "Verifies search candidates before making claims",
+        "Explains that overlapping buckets need not sum to 100 percent"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Dựa trên MCP response đính kèm, gần đây thị trường đang nổi lên vấn đề gì so với kỳ trước? Cho tôi các trend có thể khẳng định.",
+      "expected_output": "A comparison-window briefing that reports only supported trends and says the baseline is insufficient when the previous window is empty or thin.",
+      "files": [
+        "evals/files/empty-comparison-window.json"
+      ],
+      "expectations": [
+        "Uses matching primary and comparison windows",
+        "Reads data health before interpreting signal groups",
+        "Does not call an all-zero comparison a verified rise",
+        "Includes source and cohort caveats"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Verify nhận định: phụ huynh đang quan tâm tính linh hoạt lịch học hơn học phí. Kết luận rõ supported hay không và cho evidence.",
+      "expected_output": "A claim-verification brief with comparable prevalence evidence, redacted examples, caveats, and an explicit support verdict.",
+      "files": [],
+      "expectations": [
+        "Measures both sides of the claim on compatible denominators",
+        "Uses redacted evidence for material findings",
+        "Ends with one of the four required verification verdicts",
+        "Does not infer channels or campaign causality"
+      ]
+    }
+  ]
+}

@@ -10,7 +10,7 @@ Repo này là nơi tập trung plugin nội bộ: kết nối MCP, skill workflo
 |--------|--------|-----|
 | [`lms-review`](./plugins/lms-review) | Review dữ liệu LMS revise/practice qua MCP VUIHOC | `https://dev-mcp.vuihoc.vn/lms` |
 | [`mark-flow`](./plugins/mark-flow) | Đọc/tìm script, daily script, catalog, comment, timeline MarkFlow Hub | `https://markflow-api.vuihoc.vn/mcp` |
-| [`insight-os`](./plugins/insight-os) | Customer context, sales coaching và market intelligence có evidence | `https://insight-os-api.vuihoc.vn/mcp` |
+| [`insight-os`](./plugins/insight-os) | Customer context, sales coaching, market và conversion intelligence có evidence | `https://insight-os-api.vuihoc.vn/mcp` |
 
 ## Cấu trúc repo
 
@@ -74,7 +74,7 @@ codex plugin marketplace add /absolute/path/to/plugins
 
 - Read-only capability catalog cho knowledge, evidence, entity/call và sales performance
 - OAuth/row scope/redaction/cohort privacy do Insight OS enforce ở mỗi tool call
-- Skills kèm theo: customer context, sales coaching và market intelligence
+- Skills kèm theo: customer context, sales coaching, market intelligence và conversion research
 - Skill luôn giữ evidence/caveat và không suy diễn touchpoint chưa được ingest
 
 Có thể đổi URL MCP trong `plugins/mark-flow/.mcp.json` nếu dùng endpoint khác production.
