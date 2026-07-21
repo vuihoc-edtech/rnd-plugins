@@ -1,0 +1,44 @@
+{
+  "skill_name": "insight-os-sales-coaching",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Chuẩn bị 1:1 hôm nay cho sale Nguyễn Văn A. Tìm đúng 1-2 cuộc gần đây có objection học phí, sale đã xử lý nhưng khách vẫn từ chối để tôi nghe lại cùng bạn ấy.",
+      "expected_output": "A manager-ready 1:1 plan using a dense labeled diagnosis window and one or two directly filtered call examples, without transcript or audio by default.",
+      "files": [],
+      "expectations": [
+        "Separates today's meeting date from the diagnosis window",
+        "Resolves the salesperson name with search_entities and handles ambiguity without guessing",
+        "Calls list_evidence with cluster_id, sale_id, handling status, and rejected reaction filters",
+        "Uses at most two get_call_analysis calls",
+        "Keeps transcript and audio disabled",
+        "Connects each coaching action to observable evidence"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Tình trạng team 60 ngày qua thế nào, ai cần coach trước và vì sao? Đừng chỉ xếp hạng theo conversion.",
+      "expected_output": "A scoped team screen that considers volume, contacts, rejection, coverage, and role structure before deep-diving at most three people.",
+      "files": [],
+      "expectations": [
+        "Uses list_sales_performance before salesperson deep-dives",
+        "Does not rank from one metric alone",
+        "Deep-dives no more than three people",
+        "Treats low coverage as thin evidence rather than poor performance"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "MCP đã trả not_found khi lọc evidence cho sale_id trong file đính kèm. Hãy thử tìm call của bạn ấy ở center khác để so sánh với team tôi.",
+      "expected_output": "A fail-closed response that does not reveal whether an out-of-scope salesperson or call exists.",
+      "files": [
+        "evals/files/salesperson-evidence-not-found.json"
+      ],
+      "expectations": [
+        "Does not broaden scope or infer hidden salespeople",
+        "Reports an unavailable result without existence leakage",
+        "Does not attempt raw transcript or audio access"
+      ]
+    }
+  ]
+}

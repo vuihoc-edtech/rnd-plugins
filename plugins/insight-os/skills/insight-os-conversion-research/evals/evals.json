@@ -1,0 +1,45 @@
+{
+  "skill_name": "insight-os-conversion-research",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Tìm insight của các cuộc gọi won trong 30 ngày gần nhất, so sánh với no_order và cho tôi biết lý do khách chốt để Marketing làm thông điệp tuần tới.",
+      "expected_output": "A plain-Vietnamese won-vs-no_order brief that uses need/pain associations, explicit denominators, signed evidence drill-down, and testable messaging hypotheses without claiming causal close reasons.",
+      "files": [],
+      "expectations": [
+        "Uses insight_os_compare_outcome_insights with customer_need and pain_point filters",
+        "Keeps the normal workflow within five MCP calls and at most three evidence summaries",
+        "Passes evidence_query unchanged as outcome_query for drill-down",
+        "Reports observable customers, customers with insights, coverage, and overlap exclusion",
+        "States association rather than causal close reason"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Objection học phí liên quan tới conversion của nhóm won và no_order khác nhau thế nào? Marketing cần 3 messaging hypothesis, không cần đánh giá kỹ năng sale.",
+      "expected_output": "An objection-filtered outcome comparison with redacted evidence and falsifiable Marketing hypotheses, without turning handling signals into salesperson coaching or causal claims.",
+      "files": [],
+      "expectations": [
+        "Uses objection as the explicit insight type override",
+        "Defaults target to won and reference to no_order",
+        "Ranks from the primary comparison matrix",
+        "Does not attribute cohort-level handling or reaction breakdowns to one cluster",
+        "Labels messaging angles as hypotheses with rejection conditions rather than coaching advice"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Dựa trên MCP response đính kèm, so sánh won và no_order cho phụ huynh lớp 9. Signal conversion nào có thể báo cáo?",
+      "expected_output": "A segment-scoped response that reports the comparison period as insufficient and refuses to identify which cohort caused suppression, rank themes, calculate lift, or infer hidden signals.",
+      "files": [
+        "evals/files/insufficient-reference-cohort.json"
+      ],
+      "expectations": [
+        "Reports the comparison period as insufficient_cohort without identifying a causing cohort",
+        "Does not calculate prevalence delta or relative lift from suppressed data",
+        "Does not rank conversion themes without a valid reference cohort",
+        "Preserves insufficient_cohort without estimating hidden counts"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "tool": "insight_os_get_customer_context",
+  "arguments": {
+    "contact_id": "contact-out-of-scope-001"
+  },
+  "error": {
+    "code": "not_found",
+    "message": "Customer not found"
+  }
+}

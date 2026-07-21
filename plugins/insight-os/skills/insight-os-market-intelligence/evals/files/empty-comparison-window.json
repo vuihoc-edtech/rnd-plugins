@@ -1,0 +1,41 @@
+{
+  "tool": "insight_os_aggregate_insights",
+  "response": {
+    "window": {
+      "from": "2026-07-13T00:00:00+07:00",
+      "to": "2026-07-20T23:59:59+07:00",
+      "compare_from": "2026-07-05T00:00:00+07:00",
+      "compare_to": "2026-07-12T23:59:59+07:00"
+    },
+    "items": [
+      {
+        "dimensions": {
+          "signal_group": "rising"
+        },
+        "primary": {
+          "affected_customers": 42,
+          "atom_count": 55,
+          "call_count": 49,
+          "prevalence": 0.35
+        },
+        "comparison": null
+      }
+    ],
+    "data_health": "ready",
+    "caveats": [
+      {
+        "code": "comparison_window_empty",
+        "message": "The comparison window has no eligible clustered insight data."
+      },
+      {
+        "code": "source_coverage_call_consult_only",
+        "message": "Results cover consultation calls and do not establish channel or campaign effects."
+      }
+    ],
+    "access": {
+      "granularity": "aggregate",
+      "redacted": true,
+      "min_cohort_size": 5
+    }
+  }
+}

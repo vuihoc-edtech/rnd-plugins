@@ -1,6 +1,6 @@
 # Insight OS
 
-Plugin nội bộ để khai thác catalog MCP read-only của Insight OS bằng các workflow có chủ đích.
+Plugin nội bộ để khai thác catalog MCP read-only của Insight OS bằng bốn workflow theo user job.
 
 ## Thiết kế
 
@@ -15,8 +15,9 @@ Plugin nội bộ để khai thác catalog MCP read-only của Insight OS bằng
 | Skill | Job chính | Capability chain |
 |---|---|---|
 | `insight-os-customer-context` | Chuẩn bị trước cuộc gọi, xem hành trình khách và call gần nhất | entity search → customer context → calls → call analysis |
-| `insight-os-sales-coaching` | Chọn người/chủ đề cần coaching và truy về call evidence | performance → salesperson analysis → insight/evidence → call analysis |
+| `insight-os-sales-coaching` | Chọn người/chủ đề cần coaching và lấy đúng call mẫu | performance → salesperson analysis → insight → filtered evidence → call analysis |
 | `insight-os-market-intelligence` | So sánh segment/time window và kiểm chứng nhận định thị trường | facets/overview → search/aggregate → insight → evidence summary |
+| `insight-os-conversion-research` | So sánh cohort outcome và tạo messaging hypothesis | facets khi cần → outcome comparison → signed evidence summary |
 
 ## Authentication
 
@@ -42,12 +43,18 @@ Nếu một capability không hiện ra hoặc resource trả not found, coi đ�
 - Cohort dưới ngưỡng chỉ được báo `insufficient_cohort`; không suy ngược count hoặc evidence.
 - Chỉ xin transcript/audio khi người dùng yêu cầu rõ và capability hiện tại cho phép raw-call access.
 - Không gán insight cho ads channel, content hoặc message nếu output chỉ xác nhận nguồn call-consult.
-- Follow live tool schema. Nếu schema yêu cầu một object `params`, đặt toàn bộ business arguments trong object đó.
+- Dùng public tool schema hiện tại và truyền business arguments ở top level.
 
-## Known production follow-up
+## Outcome comparison
 
-Issue Insight OS #56 đang theo dõi correctness của `signal_group` facet, hybrid-search precision, evidence-summary latency và public `params` wrapper. Trong lúc issue còn mở:
+- Dùng `insight_os_compare_outcome_insights` cho câu hỏi won/no_order hoặc so sánh outcome cohort; không tự ghép các aggregate bucket.
+- Mỗi ranked item trả `evidence_query`. Khi drill down, truyền object này nguyên vẹn vào tham số `outcome_query` của `insight_os_get_evidence_summary` cùng `cluster_id` tương ứng.
+- Không copy từng filter ra khỏi signed query, không fallback sang evidence toàn cluster khi query hết hạn hoặc fail closed.
+- Primary và comparison là hai ma trận độc lập. Không tự suy diễn difference-in-differences hoặc nguyên nhân chốt đơn.
+- Handling/reaction breakdown là của toàn cohort, không phải breakdown riêng của từng ranked cluster.
 
-- Dùng `insight_os_aggregate_insights(group_by=["signal_group"])` thay vì facet `signal_group` để so primary/comparison window.
-- Xác minh semantic match bằng `insight_os_get_insight` và evidence trước khi chọn search result.
-- Chỉ gọi evidence summary sau khi đã thu hẹp còn một vài cluster phù hợp.
+## Release verification
+
+- Sau khi MCP hoặc plugin thay đổi schema, dùng một Codex task mới để tránh cache `tools/list` từ session cũ.
+- Conversion workflow bình thường không quá 5 MCP calls và drill down tối đa 3 evidence summaries.
+- Coaching một người dùng `list_evidence` với `sale_id` cùng handling/reaction/outcome filters, rồi mở tối đa 2 call analyses.
