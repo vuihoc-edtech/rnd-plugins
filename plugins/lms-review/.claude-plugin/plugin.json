@@ -1,0 +1,20 @@
+{
+  "name": "lms-review",
+  "displayName": "LMS Review",
+  "version": "0.1.0",
+  "description": "Review LMS revise and practice data through the hosted VUIHOC LMS MCP server.",
+  "author": {
+    "name": "VH EdTech",
+    "url": "https://vuihoc.vn/"
+  },
+  "homepage": "https://vuihoc.vn/",
+  "repository": "https://github.com/vhrnd/plugins.git",
+  "license": "UNLICENSED",
+  "keywords": [
+    "lms",
+    "review",
+    "mcp",
+    "vuihoc"
+  ],
+  "mcpServers": "./.claude-plugin/mcp.json"
+}

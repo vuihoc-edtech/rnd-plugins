@@ -1,0 +1,21 @@
+{
+  "name": "insight-os",
+  "displayName": "Insight OS",
+  "version": "0.1.0",
+  "description": "Evidence-linked customer context, sales coaching, and market intelligence workflows backed by the read-only Insight OS MCP catalog.",
+  "author": {
+    "name": "Vuihoc R&D",
+    "url": "https://vuihoc.vn/"
+  },
+  "homepage": "https://vuihoc.vn/",
+  "repository": "https://github.com/vhrnd/plugins.git",
+  "license": "UNLICENSED",
+  "keywords": [
+    "insight-os",
+    "customer-intelligence",
+    "sales-coaching",
+    "market-research",
+    "mcp"
+  ],
+  "mcpServers": "./.claude-plugin/mcp.json"
+}

@@ -1,0 +1,9 @@
+{
+  "vh-lms-mcp": {
+    "type": "http",
+    "url": "https://dev-mcp.vuihoc.vn/lms",
+    "headers": {
+      "token": "${VUIHOC_TOKEN}"
+    }
+  }
+}

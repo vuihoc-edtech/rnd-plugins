@@ -1,0 +1,20 @@
+{
+  "name": "mark-flow",
+  "displayName": "Mark Flow",
+  "version": "0.1.0",
+  "description": "Read-only access to MarkFlow Hub scripts, daily scripts, catalogs, comments, and review timelines through MCP.",
+  "author": {
+    "name": "Vuihoc R&D"
+  },
+  "homepage": "https://vuihoc.vn/",
+  "repository": "https://github.com/vhrnd/plugins.git",
+  "license": "UNLICENSED",
+  "keywords": [
+    "markflow",
+    "mcp",
+    "scripts",
+    "review",
+    "education"
+  ],
+  "mcpServers": "./.claude-plugin/mcp.json"
+}
