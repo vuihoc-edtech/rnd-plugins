@@ -6,8 +6,14 @@ Repo này là nơi tập trung plugin nội bộ: kết nối MCP, skill workflo
 
 Hỗ trợ song song hai hệ sinh thái qua manifest riêng, **dùng chung cùng bộ `skills/` và cùng MCP endpoint**:
 
-- **Claude Code** — `.claude-plugin/marketplace.json` (root) + `.claude-plugin/plugin.json` + `.claude-plugin/mcp.json` mỗi plugin.
+- **Claude Code** — `.claude-plugin/marketplace.json` (root) + `.claude-plugin/plugin.json` mỗi plugin,
+  MCP khai báo **inline** trong `plugin.json`.
 - **Codex** — `.agents/plugins/marketplace.json` (root) + `.codex-plugin/plugin.json` + `.mcp.json` mỗi plugin.
+
+> **Không tạo `.claude-plugin/mcp.json`.** Trước đây repo dùng file riêng này cho Claude và `.mcp.json`
+> cho Codex. Claude Code CLI chấp nhận, nhưng **sync của claude.ai/Claude Desktop thì fail**: validator
+> phía server đọc cả hai file, thấy cùng một tên MCP server với nội dung khác nhau và từ chối toàn bộ
+> marketplace. Xem [Khai báo MCP](#khai-báo-mcp).
 
 ## Plugins
 
@@ -20,7 +26,9 @@ Hỗ trợ song song hai hệ sinh thái qua manifest riêng, **dùng chung cùn
 `lms-review` không phát hành trên Claude Code — nó không có entry trong
 `.claude-plugin/marketplace.json` nên `/plugin install lms-review@vuihoc-rnd` sẽ không tìm thấy.
 Thư mục `plugins/lms-review/.claude-plugin/` được giữ lại để có thể bật lại sau; muốn phát hành lại
-thì thêm entry vào manifest Claude.
+thì thêm entry vào manifest Claude. **Trước khi list lại**, phải chuyển MCP của nó sang inline và xoá
+`plugins/lms-review/.claude-plugin/mcp.json` — plugin này vẫn còn cặp file gây collision và sẽ làm
+sync claude.ai fail như trước. Xem [Khai báo MCP](#khai-báo-mcp).
 
 ## Cấu trúc repo
 
@@ -35,15 +43,15 @@ thì thêm entry vào manifest Claude.
 │   │   ├── .mcp.json                  #   MCP config (Codex)
 │   │   └── skills/
 │   ├── mark-flow/                     # plugin MarkFlow
-│   │   ├── .claude-plugin/            #   plugin.json + mcp.json (Claude Code)
+│   │   ├── .claude-plugin/plugin.json #   manifest + MCP inline (Claude Code)
 │   │   ├── .codex-plugin/plugin.json
-│   │   ├── .mcp.json
+│   │   ├── .mcp.json                  #   MCP config (Codex)
 │   │   ├── assets/
 │   │   └── skills/
 │   └── insight-os/                    # plugin Insight OS
-│       ├── .claude-plugin/            #   plugin.json + mcp.json (Claude Code)
+│       ├── .claude-plugin/plugin.json #   manifest + MCP inline (Claude Code)
 │       ├── .codex-plugin/plugin.json
-│       ├── .mcp.json
+│       ├── .mcp.json                  #   MCP config (Codex)
 │       ├── commands/                  #   slash command (Claude Code)
 │       ├── evals/                     #   routing eval: JSON (Codex) + case (Claude)
 │       └── skills/                    #   dùng chung cả hai
@@ -135,9 +143,8 @@ Có thể đổi URL MCP trong `plugins/mark-flow/.mcp.json` nếu dùng endpoin
 
 1. Tạo thư mục `plugins/<plugin-name>/` với:
    - `skills/<skill-name>/SKILL.md` (dùng chung cho cả Claude Code và Codex)
-   - **Claude Code**: `.claude-plugin/plugin.json` (+ `.claude-plugin/mcp.json` nếu cần MCP;
-     trỏ `"mcpServers": "./.claude-plugin/mcp.json"` trong `plugin.json`).
-     MCP file dùng **bare map** `{"<server>": {"type": "http", "url": "..."}}` — không bọc key `mcpServers`.
+   - **Claude Code**: `.claude-plugin/plugin.json`, khai báo MCP **inline** trong field `mcpServers`
+     (object, không phải đường dẫn file). Xem [Khai báo MCP](#khai-báo-mcp).
    - **Codex**: `.codex-plugin/plugin.json` (+ `.mcp.json` nếu cần MCP).
 2. Đăng ký entry ở manifest root của từng hệ muốn phát hành:
    `.claude-plugin/marketplace.json` (Claude Code) và/hoặc `.agents/plugins/marketplace.json` (Codex).
@@ -146,9 +153,40 @@ Có thể đổi URL MCP trong `plugins/mark-flow/.mcp.json` nếu dùng endpoin
 3. `claude plugin validate .` để chắc chắn manifest Claude hợp lệ.
 4. Cập nhật bảng Plugins trong README này, kèm cột **Phát hành**.
 
-> Lưu ý MCP: Claude Code đọc MCP từ `.claude-plugin/mcp.json` (qua tham chiếu trong `plugin.json`),
-> còn Codex đọc từ `.mcp.json`. Giữ hai file riêng để mỗi hệ dùng đúng schema của mình; đừng để
-> Claude auto-discover `.mcp.json` của Codex (khác định dạng).
+## Khai báo MCP
+
+Mỗi plugin khai báo MCP ở **đúng hai chỗ**, và Claude **không** được có file `mcp.json` riêng:
+
+| Hệ | Nơi khai báo | Định dạng |
+|---|---|---|
+| Claude Code | field `mcpServers` **inline** trong `.claude-plugin/plugin.json` | object `{"<server>": {"type": "http", "url": "..."}}` |
+| Codex | `.mcp.json` ở gốc plugin | theo schema Codex (bọc `mcpServers`, hoặc bare map) |
+
+```json
+// .claude-plugin/plugin.json
+{
+  "name": "my-plugin",
+  "mcpServers": {
+    "my-server": { "type": "http", "url": "https://example.vuihoc.vn/mcp" }
+  }
+}
+```
+
+Lý do không dùng `.claude-plugin/mcp.json`: validator của claude.ai/Claude Desktop đọc **cả**
+`.mcp.json` **và** `.claude-plugin/mcp.json`. Nếu cùng một tên MCP server xuất hiện ở hai file với
+nội dung khác nhau, sync fail và UI chỉ hiện thông báo chung *"Marketplace sync failed. Check the
+repository URL and try again."* — không nói gì về MCP. Lỗi thật nằm ở
+`~/Library/Logs/Claude/claude.ai-web.log`, tìm `MARKETPLACE_ERROR:REMOTE_SYNC_FAILED`:
+
+```text
+MCP server name 'insight-os' is declared with different content by both file '.mcp.json'
+and file '.claude-plugin/mcp.json' — ... make the copies identical, remove one, or declare
+the override inline in plugin.json
+```
+
+Repo này chọn cách thứ ba (inline) vì nó giữ file Codex nguyên vẹn và không thể drift trở lại.
+`claude plugin validate --strict` **không** bắt được lỗi này — CLI dung thứ collision, chỉ server mới
+từ chối. Sau khi sửa MCP, luôn thử `Add marketplace` lại trên Desktop rồi kiểm tra log.
 
 ## Bảo trì
 

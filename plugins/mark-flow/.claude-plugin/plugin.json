@@ -16,5 +16,10 @@
     "review",
     "education"
   ],
-  "mcpServers": "./.claude-plugin/mcp.json"
+  "mcpServers": {
+    "markflow": {
+      "type": "http",
+      "url": "https://markflow-api.vuihoc.vn/mcp"
+    }
+  }
 }
