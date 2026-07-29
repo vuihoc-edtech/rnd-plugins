@@ -10,12 +10,6 @@
   },
   "plugins": [
     {
-      "name": "lms-review",
-      "source": "./plugins/lms-review",
-      "description": "Review dữ liệu LMS revise/practice qua MCP VUIHOC.",
-      "category": "Productivity"
-    },
-    {
       "name": "mark-flow",
       "source": "./plugins/mark-flow",
       "description": "Đọc/tìm script, daily script, catalog, comment, timeline MarkFlow Hub.",
@@ -24,7 +18,7 @@
     {
       "name": "insight-os",
       "source": "./plugins/insight-os",
-      "description": "Customer context, sales coaching và market intelligence có evidence, backed by read-only Insight OS MCP.",
+      "description": "Customer context, sales coaching, market intelligence và conversion research có evidence, backed by read-only Insight OS MCP.",
       "category": "Productivity"
     }
   ]

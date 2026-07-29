@@ -1,8 +1,8 @@
 {
   "name": "insight-os",
   "displayName": "Insight OS",
-  "version": "0.1.0",
-  "description": "Evidence-linked customer context, sales coaching, and market intelligence workflows backed by the read-only Insight OS MCP catalog.",
+  "version": "0.2.0",
+  "description": "Evidence-linked customer context, sales coaching, market intelligence, and conversion research backed by the read-only Insight OS MCP catalog.",
   "author": {
     "name": "Vuihoc R&D",
     "url": "https://vuihoc.vn/"
@@ -15,6 +15,7 @@
     "customer-intelligence",
     "sales-coaching",
     "market-research",
+    "conversion-research",
     "mcp"
   ],
   "mcpServers": "./.claude-plugin/mcp.json"
