@@ -1,0 +1,82 @@
+[
+  {
+    "query": "Tìm insight của cuộc gọi won, so với no_order và gợi ý góc thông điệp cho chiến dịch tháng tới.",
+    "expected_skill": "insight-os-conversion-research"
+  },
+  {
+    "query": "Khách chốt khác khách chưa mua ở nhu cầu và nỗi đau nào? Đừng nói đây là nguyên nhân nếu dữ liệu không chứng minh.",
+    "expected_skill": "insight-os-conversion-research"
+  },
+  {
+    "query": "Marketing muốn biết vì sao win để lên ba A/B test từ dữ liệu cuộc gọi gần đây.",
+    "expected_skill": "insight-os-conversion-research"
+  },
+  {
+    "query": "So sánh conversion signal của phụ huynh lớp 9 giữa won và lost.",
+    "expected_skill": "insight-os-conversion-research"
+  },
+  {
+    "query": "Objection học phí đang ảnh hưởng tới conversion của toàn thị trường thế nào? Tôi cần messaging hypothesis, không cần chấm sale.",
+    "expected_skill": "insight-os-conversion-research"
+  },
+  {
+    "query": "Cho tôi chân dung phụ huynh lớp 9: nhu cầu, pain point và cách họ diễn đạt.",
+    "expected_skill": "insight-os-market-intelligence"
+  },
+  {
+    "query": "Gần đây thị trường có xu hướng gì mới so với tháng trước?",
+    "expected_skill": "insight-os-market-intelligence"
+  },
+  {
+    "query": "Verify nhận định phụ huynh quan tâm lịch học linh hoạt hơn học phí.",
+    "expected_skill": "insight-os-market-intelligence"
+  },
+  {
+    "query": "Product cần brief các vấn đề khách hàng đang gặp, kèm prevalence và evidence.",
+    "expected_skill": "insight-os-market-intelligence"
+  },
+  {
+    "query": "CS muốn biết vấn đề này có phổ biến trong segment lớp 6 không và khách thường nói ra sao.",
+    "expected_skill": "insight-os-market-intelligence"
+  },
+  {
+    "query": "Team tôi ai cần coach trước trong 60 ngày qua? Đừng chỉ nhìn conversion.",
+    "expected_skill": "insight-os-sales-coaching"
+  },
+  {
+    "query": "Chuẩn bị 1:1 hôm nay cho sale A và tìm hai call objection học phí bị khách từ chối.",
+    "expected_skill": "insight-os-sales-coaching"
+  },
+  {
+    "query": "Sale nào xử lý objection lịch học tốt và sale nào cần luyện thêm?",
+    "expected_skill": "insight-os-sales-coaching"
+  },
+  {
+    "query": "Tình trạng team tuần này thế nào, nên đào tạo chủ đề gì trước?",
+    "expected_skill": "insight-os-sales-coaching"
+  },
+  {
+    "query": "Tìm call của sale Nguyễn Văn A có handling addressed nhưng customer reaction rejected để nghe trong buổi coaching.",
+    "expected_skill": "insight-os-sales-coaching"
+  },
+  {
+    "query": "Chuẩn bị context trước khi tôi gọi khách Nguyễn Thị Lan, số cuối 8821.",
+    "expected_skill": "insight-os-customer-context"
+  },
+  {
+    "query": "Cuộc gần nhất với khách này đã trao đổi gì và bước tiếp theo nên là gì?",
+    "expected_skill": "insight-os-customer-context"
+  },
+  {
+    "query": "Xem hành trình khách hàng contact 10942 và các objection đã xuất hiện.",
+    "expected_skill": "insight-os-customer-context"
+  },
+  {
+    "query": "Tìm khách theo số điện thoại rồi tóm tắt buying signals trước cuộc gọi.",
+    "expected_skill": "insight-os-customer-context"
+  },
+  {
+    "query": "Hãy sửa code FastAPI của MCP để thêm một write tool cập nhật khách hàng.",
+    "expected_skill": null
+  }
+]

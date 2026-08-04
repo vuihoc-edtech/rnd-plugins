@@ -1,0 +1,27 @@
+{
+  "name": "rino-insight-os",
+  "displayName": "Rino Insight OS",
+  "version": "0.2.0",
+  "description": "Evidence-linked customer context, sales coaching, market intelligence, and conversion research backed by the read-only Insight OS MCP catalog.",
+  "author": {
+    "name": "Vuihoc R&D",
+    "url": "https://vuihoc.vn/"
+  },
+  "homepage": "https://vuihoc.vn/",
+  "repository": "https://github.com/vhrnd/plugins.git",
+  "license": "UNLICENSED",
+  "keywords": [
+    "insight-os",
+    "customer-intelligence",
+    "sales-coaching",
+    "market-research",
+    "conversion-research",
+    "mcp"
+  ],
+  "mcpServers": {
+    "insight-os": {
+      "type": "http",
+      "url": "https://insight-os-api.rinoedu.ai/mcp"
+    }
+  }
+}

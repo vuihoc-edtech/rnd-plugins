@@ -1,0 +1,15 @@
+{
+  "tool": "insight_os_list_evidence",
+  "arguments": {
+    "cluster_id": 5125,
+    "sale_id": "sale-out-of-scope-001",
+    "customer_reactions": [
+      "rejected"
+    ],
+    "limit": 2
+  },
+  "error": {
+    "code": "not_found",
+    "message": "Salesperson not found"
+  }
+}
