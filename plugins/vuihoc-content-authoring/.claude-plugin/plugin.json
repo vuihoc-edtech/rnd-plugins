@@ -1,0 +1,27 @@
+{
+  "name": "vuihoc-content-authoring",
+  "displayName": "Soạn học liệu VUIHOC",
+  "version": "0.1.0",
+  "description": "Giáo viên VUIHOC soạn câu hỏi LMS ngay trong Claude: kết nối ứng dụng soạn học liệu (đăng nhập SSO VUIHOC) cùng bộ kỹ năng soạn và kiểm chứng câu hỏi. Câu được ghi vào bản nháp để giáo viên xem, sửa và nhập lên LMS trong ứng dụng.",
+  "author": {
+    "name": "VH EdTech",
+    "url": "https://vuihoc.vn/"
+  },
+  "homepage": "https://vuihoc.vn/",
+  "keywords": [
+    "vuihoc",
+    "lms",
+    "mcp",
+    "soạn câu hỏi",
+    "giáo viên",
+    "content-authoring"
+  ],
+  "license": "UNLICENSED",
+  "repository": "https://github.com/vhrnd/plugins.git",
+  "mcpServers": {
+    "vuihoc-author": {
+      "type": "http",
+      "url": "https://docx-converter.vuihoc.vn/mcp"
+    }
+  }
+}

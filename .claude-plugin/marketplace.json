@@ -20,6 +20,12 @@
       "source": "./plugins/insight-os",
       "description": "Customer context, sales coaching, market intelligence và conversion research có evidence, backed by read-only Insight OS MCP.",
       "category": "Productivity"
+    },
+    {
+      "name": "vuihoc-content-authoring",
+      "source": "./plugins/vuihoc-content-authoring",
+      "description": "Soạn câu hỏi LMS VUIHOC ngay trong Claude: kết nối ứng dụng soạn học liệu VUIHOC và bộ kỹ năng soạn, kiểm chứng câu hỏi.",
+      "category": "Productivity"
     }
   ]
 }

@@ -21,6 +21,7 @@ Hỗ trợ song song hai hệ sinh thái qua manifest riêng, **dùng chung cùn
 |--------|--------|-----|-----------|
 | [`insight-os`](./plugins/insight-os) | Customer context, sales coaching, market và conversion intelligence có evidence | `https://insight-os-api.vuihoc.vn/mcp` | Claude Code + Codex |
 | [`mark-flow`](./plugins/mark-flow) | Đọc/tìm script, daily script, catalog, comment, timeline MarkFlow Hub | `https://markflow-api.vuihoc.vn/mcp` | Claude Code + Codex |
+| [`vuihoc-content-authoring`](./plugins/vuihoc-content-authoring) | Giáo viên soạn câu hỏi LMS VUIHOC trong Claude, đăng nhập SSO VUIHOC | `https://docx-converter.vuihoc.vn/mcp` | **Claude only** (Claude Code, claude.ai) |
 | [`lms-review`](./plugins/lms-review) | Review dữ liệu LMS revise/practice qua MCP VUIHOC | `https://dev-mcp.vuihoc.vn/lms` | **Codex only** |
 
 `lms-review` không phát hành trên Claude Code — nó không có entry trong
