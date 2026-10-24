@@ -1,0 +1,36 @@
+{
+  "name": "vuihoc-rnd",
+  "owner": {
+    "name": "Vuihoc R&D"
+  },
+  "metadata": {
+    "description": "Marketplace plugin của Team R&D Vuihoc: kết nối MCP + bộ kỹ năng dùng chung cho các AI agent.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "vuihoc-content-authoring",
+      "source": "./plugins/vuihoc-content-authoring",
+      "description": "Soạn câu hỏi LMS VUIHOC ngay trong trợ lý AI: kết nối ứng dụng soạn học liệu VUIHOC (đăng nhập SSO) và bộ kỹ năng soạn, giải kiểm chứng, rà soát bản nháp.",
+      "category": "Productivity"
+    },
+    {
+      "name": "mark-flow",
+      "source": "./plugins/mark-flow",
+      "description": "Đọc/tìm script, daily script, catalog, comment, timeline MarkFlow Hub.",
+      "category": "Productivity"
+    },
+    {
+      "name": "insight-os",
+      "source": "./plugins/vh-insight-os",
+      "description": "Customer context, sales coaching, market intelligence và conversion research có evidence, backed by read-only Insight OS MCP.",
+      "category": "Productivity"
+    },
+    {
+      "name": "rino-insight-os",
+      "source": "./plugins/rino-insight-os",
+      "description": "Customer context, sales coaching, market intelligence và conversion research cho Rino Edu, backed by read-only Insight OS MCP.",
+      "category": "Productivity"
+    }
+  ]
+}

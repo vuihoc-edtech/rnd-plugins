@@ -1,0 +1,7 @@
+interface:
+  display_name: "Kiểm chứng Toán VUIHOC"
+  short_description: "Giải kiểm chứng bằng Python các câu Toán/tính toán mức VD, VDC."
+  default_prompt: "Dùng $kiem-chung-toan để giải và kiểm chứng câu hỏi tính toán bằng Python."
+
+policy:
+  allow_implicit_invocation: true

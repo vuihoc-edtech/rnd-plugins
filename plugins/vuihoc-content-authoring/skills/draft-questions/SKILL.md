@@ -12,7 +12,7 @@ Kỹ năng này lo phần **chọn phiên và chốt yêu cầu**; tay nghề so
 - Giáo viên đưa liên kết hoặc mã phiên: dùng phiên đó, đi tiếp bước 3.
 - Giáo viên nói "tiếp tục", "soạn tiếp", hoặc không nói rõ: `list_sessions` và gợi ý phiên gần nhất còn thiếu câu (tên, ngày, đã có bao nhiêu trên tổng). Chỉ hỏi khi có nhiều phiên khớp ngang nhau. Mỗi lần trả tối đa 20 phiên mới nhất: giáo viên nhắc tới phiên cũ hơn mà chưa thấy, còn `next_offset` thì gọi tiếp với `offset` đó.
 - Soạn bài mới, hoặc không có phiên phù hợp: bước 2.
-- Chỉ dùng được phiên tạo từ Claude. Phiên tạo ở trang "Soạn với AI" của ứng dụng thì không mở được ở đây; nếu giáo viên đưa phiên đó, nói rõ và đề nghị tạo phiên mới (hoặc tiếp tục soạn ngay trong ứng dụng).
+- Chỉ dùng được phiên mở qua kết nối MCP của trợ lý AI. Phiên tạo ở khung chat trên trang "Soạn với AI" của ứng dụng thì không mở được ở đây; nếu giáo viên đưa phiên đó, nói rõ và đề nghị tạo phiên mới (hoặc tiếp tục soạn ngay trong ứng dụng).
 
 ## 2. Chốt yêu cầu rồi tạo phiên
 

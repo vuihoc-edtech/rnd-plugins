@@ -9,7 +9,7 @@ Trả lời giáo viên bằng tiếng Việt, ngắn, giọng đồng nghiệp;
 
 ## Các bước
 
-1. Xác định phiên: liên kết/mã giáo viên đưa, hoặc `list_sessions` rồi chọn (hỏi nếu có nhiều phiên khớp; phiên cũ hơn thì gọi tiếp với `offset` là `next_offset`). Chỉ dùng được phiên tạo từ Claude.
+1. Xác định phiên: liên kết/mã giáo viên đưa, hoặc `list_sessions` rồi chọn (hỏi nếu có nhiều phiên khớp; phiên cũ hơn thì gọi tiếp với `offset` là `next_offset`). Chỉ dùng được phiên mở qua kết nối MCP của trợ lý AI (không mở được phiên tạo ở khung chat trên trang web "Soạn với AI").
 2. `get_workspace` (phiên hơn 60 câu thì xem thêm trang bằng `page`). Giáo viên có thể đã sửa tay, nên luôn đọc bản mới nhất.
 3. Tóm tắt gọn:
    - **Tiến độ ma trận**: đã có bao nhiêu trên tổng, mức/danh mục còn thiếu.

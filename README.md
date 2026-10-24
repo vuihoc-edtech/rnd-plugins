@@ -1,200 +1,109 @@
-# Vuihoc R&D — AI Agent Plugin Marketplace
+# Vuihoc R&D — Multi-Agent Plugin Marketplace
 
-Marketplace plugin cho các AI Agent (**Claude Code** và **Codex**), do **Team R&D Vuihoc** cung cấp.
+Kho lưu trữ và phân phối tập trung các Plugin (kết nối **MCP Server** + bộ **Agent Skills** + **Slash Commands**) của **Team R&D VUIHOC**, tương thích với toàn bộ các trợ lý AI phổ biến hiện nay:
 
-Repo này là nơi tập trung plugin nội bộ: kết nối MCP, skill workflow, và metadata marketplace để team cài một lần và dùng chung.
+- **Claude** (`claude.ai`, Claude Desktop, Cowork, Claude Code) — `.claude-plugin/marketplace.json` + `.claude-plugin/plugin.json`
+- **OpenAI Codex & ChatGPT** (Codex CLI, ChatGPT Desktop Work Mode) — `.agents/plugins/marketplace.json` + `.codex-plugin/plugin.json` + `.mcp.json`
+- **Cursor IDE** — `.cursor-plugin/marketplace.json` + `.cursor-plugin/plugin.json` + `.mcp.json`
+- **Gemini CLI** — `gemini-extension.json` + `GEMINI.md`
+- **Windsurf, VS Code Copilot, Cline, Roo Code, OpenCode & 70+ Agent khác** — qua chuẩn mở [Agent Skills (`npx skills`)](https://skills.sh)
 
-Hỗ trợ song song hai hệ sinh thái qua manifest riêng, **dùng chung cùng bộ `skills/` và cùng MCP endpoint**:
+---
 
-- **Claude Code** — `.claude-plugin/marketplace.json` (root) + `.claude-plugin/plugin.json` mỗi plugin,
-  MCP khai báo **inline** trong `plugin.json`.
-- **Codex** — `.agents/plugins/marketplace.json` (root) + `.codex-plugin/plugin.json` + `.mcp.json` mỗi plugin.
+## Danh sách Plugins
 
-> **Không tạo `.claude-plugin/mcp.json`.** Trước đây repo dùng file riêng này cho Claude và `.mcp.json`
-> cho Codex. Claude Code CLI chấp nhận, nhưng **sync của claude.ai/Claude Desktop thì fail**: validator
-> phía server đọc cả hai file, thấy cùng một tên MCP server với nội dung khác nhau và từ chối toàn bộ
-> marketplace. Xem [Khai báo MCP](#khai-báo-mcp).
+| Plugin | Phiên bản | Mô tả | MCP Endpoint | Nền tảng hỗ trợ |
+|--------|-----------|-------|--------------|-----------------|
+| [`vuihoc-content-authoring`](./plugins/vuihoc-content-authoring) | `1.0.0` | Giáo viên VUIHOC soạn, giải kiểm chứng và rà soát câu hỏi LMS qua MCP (đăng nhập VUIHOC SSO) | `https://docx-converter.vuihoc.vn/mcp` | **Đa nền tảng** (Claude, Codex/ChatGPT, Cursor, Gemini CLI, Windsurf, `npx skills`) |
+| [`mark-flow`](./plugins/mark-flow) | `0.1.0` | Đọc/tìm script, daily script, catalog, comment, timeline MarkFlow Hub | `https://markflow-api.vuihoc.vn/mcp` | Claude + Codex + Cursor |
+| [`vh-insight-os`](./plugins/vh-insight-os) (`insight-os`) | `0.2.0` | Customer context, sales coaching, market và conversion intelligence có evidence cho VUIHOC | `https://insight-os-api.vuihoc.vn/mcp` | Claude + Codex + Cursor |
+| [`rino-insight-os`](./plugins/rino-insight-os) | `0.2.0` | Customer context, sales coaching, market và conversion intelligence có evidence cho Rino Edu | `https://insight-os-api.rinoedu.ai/mcp` | Claude + Codex + Cursor |
+| [`lms-review`](./plugins/lms-review) | `0.1.0` | Review dữ liệu LMS revise/practice qua MCP VUIHOC | `https://dev-mcp.vuihoc.vn/lms` | Codex only |
 
-## Plugins
+---
 
-| Plugin | Mô tả | MCP | Phát hành |
-|--------|--------|-----|-----------|
-| [`insight-os`](./plugins/insight-os) | Customer context, sales coaching, market và conversion intelligence có evidence | `https://insight-os-api.vuihoc.vn/mcp` | Claude Code + Codex |
-| [`mark-flow`](./plugins/mark-flow) | Đọc/tìm script, daily script, catalog, comment, timeline MarkFlow Hub | `https://markflow-api.vuihoc.vn/mcp` | Claude Code + Codex |
-| [`vuihoc-content-authoring`](./plugins/vuihoc-content-authoring) | Giáo viên soạn câu hỏi LMS VUIHOC trong Claude, đăng nhập SSO VUIHOC | `https://docx-converter.vuihoc.vn/mcp` | **Claude only** (Claude Code, claude.ai) |
-| [`lms-review`](./plugins/lms-review) | Review dữ liệu LMS revise/practice qua MCP VUIHOC | `https://dev-mcp.vuihoc.vn/lms` | **Codex only** |
+## Cài đặt nhanh (Dành cho cả người không chuyên kỹ thuật)
 
-`lms-review` không phát hành trên Claude Code — nó không có entry trong
-`.claude-plugin/marketplace.json` nên `/plugin install lms-review@vuihoc-rnd` sẽ không tìm thấy.
-Thư mục `plugins/lms-review/.claude-plugin/` được giữ lại để có thể bật lại sau; muốn phát hành lại
-thì thêm entry vào manifest Claude. **Trước khi list lại**, phải chuyển MCP của nó sang inline và xoá
-`plugins/lms-review/.claude-plugin/mcp.json` — plugin này vẫn còn cặp file gây collision và sẽ làm
-sync claude.ai fail như trước. Xem [Khai báo MCP](#khai-báo-mcp).
+### Cách 1: Copy Prompt nhờ AI tự cài đặt
 
-## Cấu trúc repo
+Chỉ cần sao chép đoạn nhắc dưới đây và dán vào khung chat của AI (Claude Code, Cursor, Codex, Windsurf, Gemini CLI, OpenCode…), thay `<tên-plugin>` bằng tên plugin muốn cài (ví dụ `vuihoc-content-authoring`):
 
 ```text
-.
-├── .claude-plugin/marketplace.json    # metadata marketplace (Claude Code)
-├── .agents/plugins/marketplace.json   # metadata marketplace (Codex)
-├── plugins/
-│   ├── lms-review/                    # plugin LMS Review — chỉ phát hành cho Codex
-│   │   ├── .claude-plugin/            #   giữ lại nhưng KHÔNG listed ở marketplace Claude
-│   │   ├── .codex-plugin/plugin.json  #   manifest (Codex)
-│   │   ├── .mcp.json                  #   MCP config (Codex)
-│   │   └── skills/
-│   ├── mark-flow/                     # plugin MarkFlow
-│   │   ├── .claude-plugin/plugin.json #   manifest + MCP inline (Claude Code)
-│   │   ├── .codex-plugin/plugin.json
-│   │   ├── .mcp.json                  #   MCP config (Codex)
-│   │   ├── assets/
-│   │   └── skills/
-│   └── insight-os/                    # plugin Insight OS
-│       ├── .claude-plugin/plugin.json #   manifest + MCP inline (Claude Code)
-│       ├── .codex-plugin/plugin.json
-│       ├── .mcp.json                  #   MCP config (Codex)
-│       ├── commands/                  #   slash command (Claude Code)
-│       ├── evals/                     #   routing eval: JSON (Codex) + case (Claude)
-│       └── skills/                    #   dùng chung cả hai
-└── README.md
+Hãy giúp mình cài đặt plugin "vuihoc-content-authoring" từ kho GitHub https://github.com/vuihoc-edtech/rnd-plugins (thư mục plugins/vuihoc-content-authoring) theo đúng môi trường bạn đang chạy:
+- Claude Code: chạy `claude plugin marketplace add vuihoc-edtech/rnd-plugins` và `claude plugin install vuihoc-content-authoring@vuihoc-rnd`.
+- Codex: chạy `codex plugin marketplace add https://github.com/vuihoc-edtech/rnd-plugins.git` và `codex plugin add vuihoc-content-authoring@vuihoc-rnd`.
+- Cursor / Windsurf / Gemini CLI / Agent khác: chạy `npx -y skills add https://github.com/vuihoc-edtech/rnd-plugins/tree/main/plugins/vuihoc-content-authoring -g -y` và thêm MCP server trong file `.mcp.json` của plugin vào cấu hình MCP của bạn.
+Cài xong hãy hướng dẫn mình bước tiếp theo bằng tiếng Việt dễ hiểu.
 ```
 
-## Yêu cầu
+### Cách 2: Cài trên `claude.ai` / Claude Desktop / Cowork (Giao diện đồ họa)
 
-- **Claude Code** (≥ 2.1) hoặc **Codex CLI** (hoặc client tương thích plugin marketplace)
-- Quyền truy cập MCP tương ứng (OAuth cho `mark-flow` và `insight-os`; token VUIHOC cho
-  `lms-review`, chỉ dùng được qua Codex)
+1. Mở **[claude.ai/customize/plugins](https://claude.ai/customize/plugins)** (hoặc mở **Claude Desktop** → **Customize** → **Plugins**).
+2. Bấm **Add > Add marketplace**, dán URL:
+   ```text
+   https://github.com/vuihoc-edtech/rnd-plugins
+   ```
+3. Chọn plugin cần dùng (ví dụ **Soạn học liệu VUIHOC**) → bấm **Add**.
+4. Mở tab **Connectors** trong trang chi tiết của plugin → bấm **Connect** và đăng nhập tài khoản VUIHOC SSO.
 
-## Cài trên Claude Code
-
-Thêm marketplace từ GitHub rồi cài plugin:
+### Cách 3: Cài trên Claude Code (CLI / IDE)
 
 ```bash
-# trong Claude Code (slash command)
-/plugin marketplace add vhrnd/plugins
-/plugin install insight-os@vuihoc-rnd
+# Cài trực tiếp 1 bước (Claude Code >= 2.1.275)
+/plugin install vuihoc-content-authoring --marketplace vuihoc-edtech/rnd-plugins
+
+# Hoặc thêm marketplace trước rồi cài từng plugin
+/plugin marketplace add vuihoc-edtech/rnd-plugins
+/plugin install vuihoc-content-authoring@vuihoc-rnd
 /plugin install mark-flow@vuihoc-rnd
+/plugin install insight-os@vuihoc-rnd
 ```
 
-`@vuihoc-rnd` là `name` của marketplace (trong `.claude-plugin/marketplace.json`). Sau khi
-install → skill trong plugin tự nạp, MCP server tự khởi động khi plugin được enable. Với
-`insight-os`/`mark-flow`, Claude sẽ trigger OAuth khi gọi tool lần đầu.
-
-Marketplace Claude chỉ phát hành hai plugin trên. `lms-review` là Codex only — xem mục
-[Cài trên Codex](#cài-trên-codex).
-
-Cài local (dev): `/plugin marketplace add /absolute/path/to/plugins`.
-Kiểm tra manifest trước khi push: `claude plugin validate .` và `claude plugin validate plugins/<name>`.
-
-> **Đừng để MCP bị nhân đôi.** Nếu trước đây bạn đã tự thêm cùng MCP server vào `mcpServers`
-> (project scope trong `~/.claude.json`, hoặc `.mcp.json` của repo), hãy xoá entry đó sau khi cài
-> plugin. Hai nguồn cùng khai báo một server sẽ tạo hai kết nối riêng (`mcp__<server>__*` và
-> `mcp__plugin_<plugin>_<server>__*`) → gấp đôi số tool, hai luồng OAuth độc lập, và skill trở nên
-> nhập nhằng khi nhắc tên tool. Kiểm tra bằng `claude plugin details <plugin>` và `/mcp`.
-
-## Cài trên Codex
-
-Thêm marketplace từ GitHub:
+### Cách 4: Cài trên OpenAI Codex
 
 ```bash
-codex plugin marketplace add https://github.com/vhrnd/plugins.git
+codex plugin marketplace add https://github.com/vuihoc-edtech/rnd-plugins.git
+codex plugin add vuihoc-content-authoring@vuihoc-rnd
 ```
 
-Restart Codex → mở `/plugins` → chọn plugin cần dùng → Install → Enable.
-
-### Cài local (dev)
+### Cách 5: Cài kỹ năng cho mọi Agent qua `npx skills`
 
 ```bash
-codex plugin marketplace add /absolute/path/to/plugins
+npx -y skills add https://github.com/vuihoc-edtech/rnd-plugins/tree/main/plugins/vuihoc-content-authoring -g
 ```
 
-`lms-review` (Codex) cần header `token` VUIHOC trong `plugins/lms-review/.mcp.json`
-(thay `<YOUR_VUIHOC_TOKEN>`).
+---
 
-## Plugin chi tiết
+## Quản lý Phiên bản (Version Management)
 
-### LMS Review (`lms-review`) — Codex only
+Repo sử dụng công cụ `scripts/plugin_versions.py` để đồng bộ phiên bản SemVer trên toàn bộ các manifest (`.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`, `gemini-extension.json`) và kiểm tra tính toàn vẹn của marketplace:
 
-- **Không phát hành trên Claude Code.** Không có entry trong `.claude-plugin/marketplace.json`;
-  chỉ cài được qua Codex.
-- Kết nối MCP LMS để audit revise/practice
-- Cần header `token` VUIHOC trong `plugins/lms-review/.mcp.json` (thay `<YOUR_VUIHOC_TOKEN>`)
-- Skill kèm theo: `skills/lms-review`
+```bash
+# 1. Xem phiên bản hiện tại của tất cả plugin
+python3 scripts/plugin_versions.py status
 
-### MarkFlow (`mark-flow`)
+# 2. Kiểm tra đồng bộ version, đường dẫn marketplace và file rác (.DS_Store)
+python3 scripts/plugin_versions.py check
 
-- Read-only MCP tới MarkFlow Hub
-- Tool cho phép: search/get script & daily script, comments, catalog (class/subject/team/audience), timeline
-- Auth: Codex trigger OAuth/login khi MCP yêu cầu
-- Skill kèm theo: `skills/mark-flow`
+# 3. Tăng version cho một plugin (patch | minor | major hoặc --set X.Y.Z)
+python3 scripts/plugin_versions.py bump vuihoc-content-authoring patch
 
-### Insight OS (`insight-os`)
-
-- Read-only capability catalog cho knowledge, evidence, entity/call và sales performance
-- OAuth/row scope/redaction/cohort privacy do Insight OS enforce ở mỗi tool call
-- Skills kèm theo: customer context, sales coaching, market intelligence và conversion research
-- Slash command (Claude Code): `/insight-os:customer-context`, `/insight-os:sales-coaching`,
-  `/insight-os:market-intelligence`, `/insight-os:conversion-research` — chỉ gọi tay, mỗi command
-  delegate về skill tương ứng chứ không giữ workflow riêng
-- Skill luôn giữ evidence/caveat và không suy diễn touchpoint chưa được ingest
-
-Có thể đổi URL MCP trong `plugins/mark-flow/.mcp.json` nếu dùng endpoint khác production.
-
-## Thêm plugin mới
-
-1. Tạo thư mục `plugins/<plugin-name>/` với:
-   - `skills/<skill-name>/SKILL.md` (dùng chung cho cả Claude Code và Codex)
-   - **Claude Code**: `.claude-plugin/plugin.json`, khai báo MCP **inline** trong field `mcpServers`
-     (object, không phải đường dẫn file). Xem [Khai báo MCP](#khai-báo-mcp).
-   - **Codex**: `.codex-plugin/plugin.json` (+ `.mcp.json` nếu cần MCP).
-2. Đăng ký entry ở manifest root của từng hệ muốn phát hành:
-   `.claude-plugin/marketplace.json` (Claude Code) và/hoặc `.agents/plugins/marketplace.json` (Codex).
-   Hai manifest độc lập, nên một plugin có thể chỉ phát hành cho một hệ — `lms-review` hiện chỉ có
-   entry ở manifest Codex.
-3. `claude plugin validate .` để chắc chắn manifest Claude hợp lệ.
-4. Cập nhật bảng Plugins trong README này, kèm cột **Phát hành**.
-
-## Khai báo MCP
-
-Mỗi plugin khai báo MCP ở **đúng hai chỗ**, và Claude **không** được có file `mcp.json` riêng:
-
-| Hệ | Nơi khai báo | Định dạng |
-|---|---|---|
-| Claude Code | field `mcpServers` **inline** trong `.claude-plugin/plugin.json` | object `{"<server>": {"type": "http", "url": "..."}}` |
-| Codex | `.mcp.json` ở gốc plugin | theo schema Codex (bọc `mcpServers`, hoặc bare map) |
-
-```json
-// .claude-plugin/plugin.json
-{
-  "name": "my-plugin",
-  "mcpServers": {
-    "my-server": { "type": "http", "url": "https://example.vuihoc.vn/mcp" }
-  }
-}
+# 4. Validate với bộ công cụ chuẩn trước khi push
+claude plugin validate --strict .
+claude plugin validate --profile directory --strict plugins/vuihoc-content-authoring
 ```
 
-Lý do không dùng `.claude-plugin/mcp.json`: validator của claude.ai/Claude Desktop đọc **cả**
-`.mcp.json` **và** `.claude-plugin/mcp.json`. Nếu cùng một tên MCP server xuất hiện ở hai file với
-nội dung khác nhau, sync fail và UI chỉ hiện thông báo chung *"Marketplace sync failed. Check the
-repository URL and try again."* — không nói gì về MCP. Lỗi thật nằm ở
-`~/Library/Logs/Claude/claude.ai-web.log`, tìm `MARKETPLACE_ERROR:REMOTE_SYNC_FAILED`:
+---
 
-```text
-MCP server name 'insight-os' is declared with different content by both file '.mcp.json'
-and file '.claude-plugin/mcp.json' — ... make the copies identical, remove one, or declare
-the override inline in plugin.json
-```
+## Quy tắc Khai báo MCP (Tránh lỗi Sync trên Claude Desktop / claude.ai)
 
-Repo này chọn cách thứ ba (inline) vì nó giữ file Codex nguyên vẹn và không thể drift trở lại.
-`claude plugin validate --strict` **không** bắt được lỗi này — CLI dung thứ collision, chỉ server mới
-từ chối. Sau khi sửa MCP, luôn thử `Add marketplace` lại trên Desktop rồi kiểm tra log.
+> **Tuyệt đối không tạo `.claude-plugin/mcp.json` khác nội dung với `.mcp.json`.**
+> Validator phía server của `claude.ai` / Claude Desktop đọc cả `.mcp.json` và `.claude-plugin/mcp.json`. Nếu cùng một tên MCP server xuất hiện ở hai file với nội dung khác nhau, toàn bộ marketplace sẽ bị từ chối đồng bộ (`MARKETPLACE_ERROR:REMOTE_SYNC_FAILED`).
 
-## Bảo trì
-
-- Giữ plugin độc lập trong `plugins/<name>/`
-- Không commit token/secret; dùng placeholder và auth runtime
-- Version plugin qua field `version` trong `plugin.json`
+Quy chuẩn trong repo này:
+1. **Claude**: Khai báo `mcpServers` **inline** ngay trong `.claude-plugin/plugin.json` (không tạo `.claude-plugin/mcp.json`).
+2. **Codex & Cursor**: Đọc từ `.mcp.json` ở gốc thư mục từng plugin với cấu trúc `{"mcpServers": {"<server>": {"type": "http", "url": "..."}}}` đồng nhất với khai báo inline của Claude.
 
 ## Liên hệ
 
-Team R&D — Vuihoc
+Team R&D — VUIHOC (`https://vuihoc.vn/`)

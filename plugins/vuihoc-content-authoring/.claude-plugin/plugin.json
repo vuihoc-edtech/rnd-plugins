@@ -1,13 +1,17 @@
 {
   "name": "vuihoc-content-authoring",
   "displayName": "Soạn học liệu VUIHOC",
-  "version": "0.1.0",
-  "description": "Giáo viên VUIHOC soạn câu hỏi LMS ngay trong Claude: kết nối ứng dụng soạn học liệu (đăng nhập SSO VUIHOC) cùng bộ kỹ năng soạn và kiểm chứng câu hỏi. Câu được ghi vào bản nháp để giáo viên xem, sửa và nhập lên LMS trong ứng dụng.",
+  "version": "1.0.0",
+  "description": "Giáo viên VUIHOC soạn câu hỏi LMS ngay trong trợ lý AI: kết nối máy chủ MCP soạn học liệu (đăng nhập SSO VUIHOC) cùng bộ kỹ năng soạn, giải kiểm chứng và rà soát bản nháp. Câu được ghi vào bản nháp để giáo viên xem, sửa và nạp lên LMS trong ứng dụng.",
   "author": {
-    "name": "VH EdTech",
+    "name": "VUIHOC EdTech",
     "url": "https://vuihoc.vn/"
   },
-  "homepage": "https://vuihoc.vn/",
+  "homepage": "https://docx-converter.vuihoc.vn/ket-noi-ai",
+  "repository": "https://github.com/vuihoc-edtech/rnd-plugins.git",
+  "privacyPolicyUrl": "https://vuihoc.vn/",
+  "license": "UNLICENSED",
+  "icon": "./assets/icon.png",
   "keywords": [
     "vuihoc",
     "lms",
@@ -16,8 +20,6 @@
     "giáo viên",
     "content-authoring"
   ],
-  "license": "UNLICENSED",
-  "repository": "https://github.com/vhrnd/plugins.git",
   "mcpServers": {
     "vuihoc-author": {
       "type": "http",

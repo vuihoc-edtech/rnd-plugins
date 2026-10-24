@@ -1,0 +1,11 @@
+{
+  "name": "vuihoc-content-authoring",
+  "version": "1.0.0",
+  "description": "Giáo viên VUIHOC soạn câu hỏi LMS ngay trong trợ lý AI: kết nối máy chủ MCP soạn học liệu (đăng nhập SSO VUIHOC) cùng bộ kỹ năng soạn, giải kiểm chứng và rà soát bản nháp.",
+  "contextFileName": "GEMINI.md",
+  "mcpServers": {
+    "vuihoc-author": {
+      "httpUrl": "https://docx-converter.vuihoc.vn/mcp"
+    }
+  }
+}

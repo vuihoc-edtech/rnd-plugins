@@ -1,0 +1,44 @@
+{
+  "name": "vuihoc-content-authoring",
+  "version": "1.0.0",
+  "description": "Giáo viên VUIHOC soạn câu hỏi LMS ngay trong trợ lý AI: kết nối máy chủ MCP soạn học liệu (đăng nhập SSO VUIHOC) cùng bộ kỹ năng soạn, giải kiểm chứng và rà soát bản nháp.",
+  "author": {
+    "name": "VUIHOC EdTech",
+    "url": "https://vuihoc.vn/"
+  },
+  "homepage": "https://docx-converter.vuihoc.vn/ket-noi-ai",
+  "repository": "https://github.com/vuihoc-edtech/rnd-plugins.git",
+  "license": "UNLICENSED",
+  "keywords": [
+    "vuihoc",
+    "lms",
+    "mcp",
+    "soạn câu hỏi",
+    "giáo viên",
+    "content-authoring"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Soạn học liệu VUIHOC",
+    "shortDescription": "Soạn, giải kiểm chứng và rà soát câu hỏi LMS VUIHOC qua MCP.",
+    "longDescription": "Kết nối trợ lý AI với máy chủ MCP soạn học liệu của VUIHOC (đăng nhập bằng tài khoản VUIHOC SSO) kèm bộ 4 kỹ năng chuyên biệt: mở/tiếp tục phiên soạn, soạn câu hỏi chuẩn GDPT 2018 (TN1, TNN, DS, DS4, DK, KT, VO), giải kiểm chứng Toán bằng Python và rà soát bản nháp.",
+    "developerName": "VUIHOC EdTech",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write",
+      "OAuth"
+    ],
+    "websiteURL": "https://docx-converter.vuihoc.vn/ket-noi-ai",
+    "privacyPolicyURL": "https://vuihoc.vn/",
+    "defaultPrompt": [
+      "Soạn cho mình câu hỏi Toán lớp 6 bài Phép cộng phân số.",
+      "Tiếp tục phiên soạn câu hỏi VUIHOC gần nhất của mình.",
+      "Kiểm tra bản nháp hiện tại xem còn lỗi hay câu nào cần rà lại không."
+    ],
+    "brandColor": "#EA580C",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/logo.svg"
+  }
+}

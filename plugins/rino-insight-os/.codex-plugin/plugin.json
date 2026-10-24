@@ -1,5 +1,5 @@
 {
-  "name": "insight-os",
+  "name": "rino-insight-os",
   "version": "0.2.0",
   "description": "Evidence-linked customer context, sales coaching, market intelligence, and conversion research backed by the read-only Insight OS MCP catalog.",
   "author": {
@@ -7,7 +7,7 @@
     "url": "https://vuihoc.vn/"
   },
   "homepage": "https://vuihoc.vn/",
-  "repository": "https://github.com/vhrnd/plugins.git",
+  "repository": "https://github.com/vuihoc-edtech/rnd-plugins.git",
   "license": "UNLICENSED",
   "keywords": [
     "insight-os",
@@ -19,7 +19,7 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Insight OS",
+    "displayName": "Rino Insight OS",
     "shortDescription": "Turn customer-call evidence into scoped sales and market intelligence.",
     "longDescription": "Connects Codex to the read-only Insight OS capability catalog and adds focused workflows for pre-call customer context, sales coaching, market intelligence, outcome-cohort comparison, and evidence-backed claim verification. Authorization, row scope, PII redaction, and cohort privacy remain enforced by Insight OS on every tool call.",
     "developerName": "Vuihoc R&D",

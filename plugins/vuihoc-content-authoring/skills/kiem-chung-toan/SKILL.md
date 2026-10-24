@@ -9,7 +9,7 @@ Bổ sung cho phần Kiểm chứng của kỹ năng `soan-cau-hoi`. Cần môi 
 
 ## Thư viện `scripts/vn.py`
 
-Nằm trong thư mục kỹ năng này, tại `scripts/vn.py` (Claude Code: `${CLAUDE_SKILL_DIR}/scripts`). Thêm đường dẫn đầy đủ của thư mục `scripts` vào `sys.path` rồi `from vn import num, rnd`; hoặc dán nội dung file vào đầu lần chạy.
+Nằm trong thư mục kỹ năng này, tại `scripts/vn.py` (nếu môi trường có biến `${CLAUDE_SKILL_DIR}` hoặc `${PLUGIN_ROOT}` thì dùng đường dẫn tương ứng tới `scripts`). Thêm đường dẫn đầy đủ của thư mục `scripts` vào `sys.path` rồi `from vn import num, rnd`; hoặc dán nội dung file vào đầu lần chạy.
 
 - `num("60.000")` → 60000; `num("0{,}175")` → 7/40; `num("1,5")` → 3/2: số hữu tỉ chính xác từ chuỗi số kiểu Việt Nam.
 - `rnd(value, digits)`: làm tròn kiểu sách giáo khoa (năm lên), không dùng `round()`.

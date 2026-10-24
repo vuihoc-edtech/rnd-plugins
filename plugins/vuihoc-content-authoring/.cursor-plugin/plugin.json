@@ -1,0 +1,23 @@
+{
+  "name": "vuihoc-content-authoring",
+  "version": "1.0.0",
+  "description": "Giáo viên VUIHOC soạn câu hỏi LMS ngay trong trợ lý AI: kết nối máy chủ MCP soạn học liệu (đăng nhập SSO VUIHOC) cùng bộ kỹ năng soạn, giải kiểm chứng và rà soát bản nháp.",
+  "author": {
+    "name": "VUIHOC EdTech"
+  },
+  "homepage": "https://docx-converter.vuihoc.vn/ket-noi-ai",
+  "repository": "https://github.com/vuihoc-edtech/rnd-plugins.git",
+  "license": "UNLICENSED",
+  "keywords": [
+    "vuihoc",
+    "lms",
+    "mcp",
+    "soạn câu hỏi",
+    "giáo viên",
+    "content-authoring"
+  ],
+  "logo": "assets/logo.svg",
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "mcpServers": "./.mcp.json"
+}

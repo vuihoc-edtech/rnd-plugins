@@ -5,10 +5,17 @@
     "url": "https://vuihoc.vn/"
   },
   "metadata": {
-    "description": "Marketplace plugin nội bộ của Team R&D Vuihoc: kết nối MCP + skill workflow dùng chung cho các AI agent (Claude Code và tương thích).",
-    "version": "0.1.0"
+    "description": "Marketplace plugin của Team R&D Vuihoc: kết nối MCP + bộ kỹ năng dùng chung cho mọi AI agent phổ biến (Claude, Codex, Cursor, Gemini CLI, Windsurf...).",
+    "version": "1.0.0"
   },
   "plugins": [
+    {
+      "name": "vuihoc-content-authoring",
+      "source": "./plugins/vuihoc-content-authoring",
+      "displayName": "Soạn học liệu VUIHOC",
+      "description": "Soạn câu hỏi LMS VUIHOC ngay trong trợ lý AI: kết nối ứng dụng soạn học liệu VUIHOC (đăng nhập SSO) và bộ kỹ năng soạn, giải kiểm chứng, rà soát bản nháp.",
+      "category": "Productivity"
+    },
     {
       "name": "mark-flow",
       "source": "./plugins/mark-flow",
@@ -17,14 +24,14 @@
     },
     {
       "name": "insight-os",
-      "source": "./plugins/insight-os",
+      "source": "./plugins/vh-insight-os",
       "description": "Customer context, sales coaching, market intelligence và conversion research có evidence, backed by read-only Insight OS MCP.",
       "category": "Productivity"
     },
     {
-      "name": "vuihoc-content-authoring",
-      "source": "./plugins/vuihoc-content-authoring",
-      "description": "Soạn câu hỏi LMS VUIHOC ngay trong Claude: kết nối ứng dụng soạn học liệu VUIHOC và bộ kỹ năng soạn, kiểm chứng câu hỏi.",
+      "name": "rino-insight-os",
+      "source": "./plugins/rino-insight-os",
+      "description": "Customer context, sales coaching, market intelligence và conversion research cho Rino Edu, backed by read-only Insight OS MCP.",
       "category": "Productivity"
     }
   ]

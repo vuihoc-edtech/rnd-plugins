@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "vuihoc-author": {
+      "type": "http",
+      "url": "https://docx-converter.vuihoc.vn/mcp"
+    }
+  }
+}

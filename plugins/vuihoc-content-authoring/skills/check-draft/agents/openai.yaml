@@ -1,0 +1,15 @@
+interface:
+  display_name: "Rà soát bản nháp VUIHOC"
+  short_description: "Kiểm tra bản nháp câu hỏi, tiến độ ma trận và sửa từng câu lỗi."
+  default_prompt: "Dùng $check-draft để kiểm tra bản nháp hiện tại và báo cáo các câu cần sửa."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "vuihoc-author"
+      description: "Máy chủ MCP soạn học liệu VUIHOC (đăng nhập SSO VUIHOC)."
+      transport: "streamable_http"
+      url: "https://docx-converter.vuihoc.vn/mcp"
+
+policy:
+  allow_implicit_invocation: true

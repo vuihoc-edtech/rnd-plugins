@@ -40,8 +40,9 @@ frontmatter bị drop toàn bộ (`claude plugin validate` báo lỗi này).
 ## Cài trên Claude Code
 
 ```bash
-claude plugin marketplace add vhrnd/plugins      # hoặc /absolute/path/to/plugins khi dev
-claude plugin install insight-os@vuihoc-rnd
+/plugin install rino-insight-os --marketplace vuihoc-edtech/rnd-plugins
+claude plugin marketplace add vuihoc-edtech/rnd-plugins
+claude plugin install rino-insight-os@vuihoc-rnd
 ```
 
 Restart Claude Code, rồi `/mcp` → chọn `insight-os` → authenticate. Kiểm tra plugin đã nạp đủ
